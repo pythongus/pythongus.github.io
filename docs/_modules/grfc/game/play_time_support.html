@@ -1,0 +1,153 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>grfc.game.play_time_support &#8212; GRFC 1.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">GRFC 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for grfc.game.play_time_support</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">play_time_support module</span>
+
+<span class="sd">Supporing functions for module play_time. </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">grfc.game</span> <span class="k">import</span> <span class="n">TOTAL_TIME</span>
+<span class="kn">import</span> <span class="nn">grfc.game.game_data</span> <span class="k">as</span> <span class="nn">gd</span>
+<span class="kn">import</span> <span class="nn">grfc.game.remote_handler</span> <span class="k">as</span> <span class="nn">rh</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="k">import</span> <span class="n">TOTAL_TIME</span>
+
+
+<span class="k">def</span> <span class="nf">all_players_times</span><span class="p">(</span><span class="n">time_for_players</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">_create_dataframe</span><span class="p">(</span><span class="n">round_sheet</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">round_sheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;values&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">columns</span><span class="o">=</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="k">def</span> <span class="nf">_remote_data</span><span class="p">():</span>
+        <span class="n">ranges</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span><span class="s2">&quot;&#39;Round </span><span class="si">{round}</span><span class="s2">&#39;!A1:G29&quot;</span> <span class="k">for</span> <span class="nb">round</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">19</span><span class="p">)]</span>
+        <span class="n">sheet</span> <span class="o">=</span> <span class="n">rh</span><span class="o">.</span><span class="n">spreadsheet_data</span><span class="p">(</span><span class="n">ranges</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">_create_dataframe</span><span class="p">(</span><span class="n">round_sheet</span><span class="p">)</span> <span class="k">for</span> <span class="n">round_sheet</span> <span class="ow">in</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;valueRanges&#39;</span><span class="p">,</span> <span class="p">[])]</span>
+
+    <span class="k">def</span> <span class="nf">_get_data</span><span class="p">(</span><span class="n">round_nbr</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">gd</span><span class="o">.</span><span class="n">read_data_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">f</span><span class="s1">&#39;Round </span><span class="si">{round_nbr}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">filename</span> <span class="k">else</span> <span class="n">remote_data</span><span class="p">[</span><span class="n">round_nbr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">remote_data</span> <span class="o">=</span> <span class="n">_remote_data</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">time_for_players</span><span class="p">(</span><span class="n">_get_data</span><span class="p">(</span><span class="n">round_nbr</span><span class="p">))</span> <span class="k">for</span> <span class="n">round_nbr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">19</span><span class="p">)]</span>
+
+
+<div class="viewcode-block" id="time_for_players"><a class="viewcode-back" href="../../../game.html#grfc.game.play_time_support.time_for_players">[docs]</a><span class="k">def</span> <span class="nf">time_for_players</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Read the data file and returns tuples with time stats and goalies stats.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">players_list</span><span class="p">,</span> <span class="n">goalies_list</span><span class="p">,</span> <span class="n">timeoff</span><span class="p">,</span> <span class="n">nbr_of_time_offs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">match_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">data_is_ok</span><span class="p">(</span><span class="n">goalies_list</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">time_stats</span><span class="p">(</span><span class="n">players_list</span><span class="p">,</span> <span class="n">timeoff</span><span class="p">,</span> <span class="n">nbr_of_time_offs</span><span class="p">),</span> \
+               <span class="n">goalies_stats</span><span class="p">(</span><span class="n">goalies_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="data_is_ok"><a class="viewcode-back" href="../../../game.html#grfc.game.play_time_support.data_is_ok">[docs]</a><span class="k">def</span> <span class="nf">data_is_ok</span><span class="p">(</span><span class="n">goalies_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Checks is the data is non-empty by checking if the goalies list is not empty&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">goalies_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{x}{y}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">goalies_list</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="time_stats"><a class="viewcode-back" href="../../../game.html#grfc.game.play_time_support.time_stats">[docs]</a><span class="k">def</span> <span class="nf">time_stats</span><span class="p">(</span><span class="n">players_list</span><span class="p">,</span> <span class="n">timeoff</span><span class="p">,</span> <span class="n">nbr_of_time_offs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the time statistics from the given parameters&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_get_time</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">time_offs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">TOTAL_TIME</span> <span class="o">-</span> <span class="n">timeoff</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">time_offs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">time_offs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="n">player</span><span class="p">:</span> <span class="n">_get_time</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">nbr_of_time_offs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">player</span><span class="p">))</span> <span class="k">for</span> <span class="n">player</span> <span class="ow">in</span> <span class="n">players_list</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="goalies_stats"><a class="viewcode-back" href="../../../game.html#grfc.game.play_time_support.goalies_stats">[docs]</a><span class="k">def</span> <span class="nf">goalies_stats</span><span class="p">(</span><span class="n">goalies_list</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the number of turn in goals for each player&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">player</span><span class="p">:</span> <span class="n">goalies_list</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">player</span><span class="p">)</span> <span class="k">for</span> <span class="n">player</span> <span class="ow">in</span> <span class="n">goalies_list</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="set_column_name"><a class="viewcode-back" href="../../../game.html#grfc.game.play_time_support.set_column_name">[docs]</a><span class="k">def</span> <span class="nf">set_column_name</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Sets the new name for the given column.&quot;&quot;&quot;</span>
+    <span class="n">column</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">column</span></div>
+
+
+<div class="viewcode-block" id="no_empty_data"><a class="viewcode-back" href="../../../game.html#grfc.game.play_time_support.no_empty_data">[docs]</a><span class="k">def</span> <span class="nf">no_empty_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Filters out empty records from the given data.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">dt</span><span class="p">:</span> <span class="n">dt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">GRFC 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Gus Garcia.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

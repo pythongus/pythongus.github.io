@@ -1,0 +1,182 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Fruit + Lollies Roster &#8212; GRFC 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mobile App" href="grfcapp.html" />
+    <link rel="prev" title="Welcome to GRFC’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="grfcapp.html" title="Mobile App"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to GRFC’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">GRFC 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fruit-lollies-roster">
+<h1>Fruit + Lollies Roster<a class="headerlink" href="#fruit-lollies-roster" title="Permalink to this headline">¶</a></h1>
+<p>The roster shows the order, the person and the date that each parent should contribute with fruits and lollies for the players on each round.</p>
+<div class="section" id="module-roster.roster">
+<span id="roster-roster"></span><h2>roster.roster<a class="headerlink" href="#module-roster.roster" title="Permalink to this headline">¶</a></h2>
+<p>Fruit Roster Creator</p>
+<p>Script for the fruit roster, using SQLite. The DB file is <em>fruit_roster.db</em>.</p>
+<dl class="data">
+<dt id="roster.roster.NAMES_AND_DATES">
+<code class="descclassname">roster.roster.</code><code class="descname">NAMES_AND_DATES</code><em class="property"> = [('Tatiana', '2019-03-23'), ('Alison', '2019-03-30'), ('Sara', '2019-04-06'), ('Kylie', '2019-04-13'), ('Julie', '2019-04-20'), ('Lyndal', '2019-04-27'), ('Hege', '2019-05-04'), ('Tina', '2019-05-11'), ('Tasmeen', '2019-05-18'), ('Tatiana', '2019-05-25'), ('Alison', '2019-06-01'), ('Sara', '2019-06-08'), ('Kylie', '2019-06-15'), ('Julie', '2019-06-22'), ('Lyndal', '2019-06-29'), ('Hege', '2019-07-06'), ('Tina', '2019-07-13'), ('Tasmeen', '2019-07-20')]</em><a class="headerlink" href="#roster.roster.NAMES_AND_DATES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial names and dates when creating the <em>fruit_roster.db</em> file,
+a SQLite database.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="roster.roster.create_database">
+<code class="descclassname">roster.roster.</code><code class="descname">create_database</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/roster/roster.html#create_database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#roster.roster.create_database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the database</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="roster.roster.generate_report">
+<code class="descclassname">roster.roster.</code><code class="descname">generate_report</code><span class="sig-paren">(</span><em>raw_data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/roster/roster.html#generate_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#roster.roster.generate_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the report for the whole season.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="roster.roster.insert_new_records">
+<code class="descclassname">roster.roster.</code><code class="descname">insert_new_records</code><span class="sig-paren">(</span><em>new_records</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/roster/roster.html#insert_new_records"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#roster.roster.insert_new_records" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inserts new records in the fruit roster database.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="roster.roster.select_all_records">
+<code class="descclassname">roster.roster.</code><code class="descname">select_all_records</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/roster/roster.html#select_all_records"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#roster.roster.select_all_records" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select all records from the fruit roster</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-roster.new_roster">
+<span id="roster-new-roster"></span><h2>roster.new_roster<a class="headerlink" href="#module-roster.new_roster" title="Permalink to this headline">¶</a></h2>
+<p>A module for regenerating the dates for the fruit roster.</p>
+<dl class="data">
+<dt id="roster.new_roster.HOLIDAYS">
+<code class="descclassname">roster.new_roster.</code><code class="descname">HOLIDAYS</code><em class="property"> = [datetime.date(2019, 4, 20)]</em><a class="headerlink" href="#roster.new_roster.HOLIDAYS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Holidays to be excluded from the roster</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="roster.new_roster.START_OF_THE_SEASON">
+<code class="descclassname">roster.new_roster.</code><code class="descname">START_OF_THE_SEASON</code><em class="property"> = datetime.date(2019, 3, 30)</em><a class="headerlink" href="#roster.new_roster.START_OF_THE_SEASON" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start of the season date</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="roster.new_roster.create_roster">
+<code class="descclassname">roster.new_roster.</code><code class="descname">create_roster</code><span class="sig-paren">(</span><em>data</em>, <em>date_generator</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/roster/new_roster.html#create_roster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#roster.new_roster.create_roster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the rostes using the existing data, but reassigning the
+dates created by the date generator.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="roster.new_roster.next_date">
+<code class="descclassname">roster.new_roster.</code><code class="descname">next_date</code><span class="sig-paren">(</span><em>initial_date</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/roster/new_roster.html#next_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#roster.new_roster.next_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Date generator, starting from the initial date.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Fruit + Lollies Roster</a><ul>
+<li><a class="reference internal" href="#module-roster.roster">roster.roster</a></li>
+<li><a class="reference internal" href="#module-roster.new_roster">roster.new_roster</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to GRFC’s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="grfcapp.html"
+                        title="next chapter">Mobile App</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/roster.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="grfcapp.html" title="Mobile App"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to GRFC’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">GRFC 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Gus Garcia.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>roster.roster &#8212; GRFC 1.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">GRFC 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for roster.roster</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding: utf-8</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Fruit Roster Creator</span>
+
+<span class="sd">Script for the fruit roster, using SQLite. The DB file is *fruit_roster.db*.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="k">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span> <span class="nn">sqlite3</span> <span class="k">import</span> <span class="n">connect</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="n">NAMES_AND_DATES</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;Tatiana&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-03-23&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Alison&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-03-30&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Sara&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-04-06&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Kylie&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-04-13&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Julie&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-04-20&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Lyndal&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-04-27&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Hege&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-05-04&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Tina&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-05-11&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Tasmeen&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-05-18&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Tatiana&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-05-25&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Alison&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-06-01&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Sara&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-06-08&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Kylie&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-06-15&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Julie&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-06-22&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Lyndal&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-06-29&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Hege&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-07-06&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Tina&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-07-13&#39;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s1">&#39;Tasmeen&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-07-20&#39;</span><span class="p">),</span>
+                   <span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;Initial names and dates when creating the *fruit_roster.db* file,</span>
+<span class="sd">a SQLite database.&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="create_database"><a class="viewcode-back" href="../../roster.html#roster.roster.create_database">[docs]</a><span class="k">def</span> <span class="nf">create_database</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Creates the database&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">connect</span><span class="p">(</span><span class="s2">&quot;fruit_roster.db&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create table roster (id integer primary key, name text, date text)&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="insert_new_records"><a class="viewcode-back" href="../../roster.html#roster.roster.insert_new_records">[docs]</a><span class="k">def</span> <span class="nf">insert_new_records</span><span class="p">(</span><span class="n">new_records</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Inserts new records in the fruit roster database.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">_database_cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+        <span class="n">_insert_records</span><span class="p">(</span><span class="n">new_records</span><span class="p">,</span> <span class="n">cursor</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="select_all_records"><a class="viewcode-back" href="../../roster.html#roster.roster.select_all_records">[docs]</a><span class="k">def</span> <span class="nf">select_all_records</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Select all records from the fruit roster&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">_database_cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;select * from roster&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span></div>
+
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">_database_cursor</span><span class="p">(</span><span class="n">isolation_level</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the cursor to the database.&quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="s2">&quot;fruit_roster.db&quot;</span><span class="p">,</span> <span class="n">isolation_level</span><span class="o">=</span><span class="n">isolation_level</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">_insert_records</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">cursor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Receives a list for record containing names and dates</span>
+<span class="sd">    and a cursor to the database. Inserts the records into the</span>
+<span class="sd">    database.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">insert</span> <span class="o">=</span> <span class="s2">&quot;insert into roster values(NULL, &#39;</span><span class="si">{}</span><span class="s2">&#39;, &#39;</span><span class="si">{}</span><span class="s2">&#39;)&quot;</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insert</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">date</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="generate_report"><a class="viewcode-back" href="../../roster.html#roster.roster.generate_report">[docs]</a><span class="k">def</span> <span class="nf">generate_report</span><span class="p">(</span><span class="n">raw_data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generates the report for the whole season.&quot;&quot;&quot;</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+    <span class="n">names_and_dates</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Date&quot;</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">names_and_dates</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">names_and_dates</span><span class="p">[</span><span class="s2">&quot;Date&quot;</span><span class="p">],</span> <span class="n">yearfirst</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">names_and_dates</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="n">num</span><span class="p">:</span> <span class="n">num</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">)},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">names_and_dates</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;roster.html&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">),</span>
+                            <span class="n">formatters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Date&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">dt</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2">/%m/%Y&quot;</span><span class="p">)},</span>
+                            <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">GRFC 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Gus Garcia.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Mobile App &#8212; GRFC 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Module grfc.game" href="game.html" />
+    <link rel="prev" title="Fruit + Lollies Roster" href="roster.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="game.html" title="Module grfc.game"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="roster.html" title="Fruit + Lollies Roster"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">GRFC 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="mobile-app">
+<h1>Mobile App<a class="headerlink" href="#mobile-app" title="Permalink to this headline">¶</a></h1>
+<p>This is the Flask web app (mobile-responsive version) for the statistics collection process. During the game, goals and substitution roster are checked and scored on the spot.</p>
+<div class="section" id="module-grfcapp.app">
+<span id="grfcapp-app"></span><h2>grfcapp.app<a class="headerlink" href="#module-grfcapp.app" title="Permalink to this headline">¶</a></h2>
+<p>GRFC Stats Collector Application</p>
+<p>Flask module holding the main routes for the mobile application.</p>
+<dl class="data">
+<dt id="grfcapp.app.app">
+<code class="descclassname">grfcapp.app.</code><code class="descname">app</code><em class="property"> = &lt;Flask 'grfcapp.app'&gt;</em><a class="headerlink" href="#grfcapp.app.app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main Flask object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.app.authenticate">
+<code class="descclassname">grfcapp.app.</code><code class="descname">authenticate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/app.html#authenticate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.app.authenticate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Authenticate router function. Once user is authenticated, redirects
+to the game choice page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.app.game">
+<code class="descclassname">grfcapp.app.</code><code class="descname">game</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/app.html#game"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.app.game" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the choice for either a new game,
+the current one or an already finished.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.app.game_report">
+<code class="descclassname">grfcapp.app.</code><code class="descname">game_report</code><span class="sig-paren">(</span><em>round_nbr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/app.html#game_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.app.game_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches the game report for a specific round.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.app.login">
+<code class="descclassname">grfcapp.app.</code><code class="descname">login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/app.html#login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.app.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Login router function. Returns the <em>login.html</em> template.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.app.no_page_found">
+<code class="descclassname">grfcapp.app.</code><code class="descname">no_page_found</code><span class="sig-paren">(</span><em>e</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/app.html#no_page_found"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.app.no_page_found" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays the error message for any unknown web page.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.app.read_report">
+<code class="descclassname">grfcapp.app.</code><code class="descname">read_report</code><span class="sig-paren">(</span><em>round_nbr</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/app.html#read_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.app.read_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the report for the given round_nbr from the
+source file and returns the text.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-grfcapp.validation">
+<span id="grfcapp-validation"></span><h2>grfcapp.validation<a class="headerlink" href="#module-grfcapp.validation" title="Permalink to this headline">¶</a></h2>
+<p>Validation Module For The Web App (Mobile Version)</p>
+<p>Validations for routes in the web app.</p>
+<dl class="class">
+<dt id="grfcapp.validation.LoginForm">
+<em class="property">class </em><code class="descclassname">grfcapp.validation.</code><code class="descname">LoginForm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/validation.html#LoginForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.validation.LoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Custom Form class for login form.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.validation.check_request_params">
+<code class="descclassname">grfcapp.validation.</code><code class="descname">check_request_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/validation.html#check_request_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.validation.check_request_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the request parameters by route.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.validation.only_text">
+<code class="descclassname">grfcapp.validation.</code><code class="descname">only_text</code><span class="sig-paren">(</span><em>form</em>, <em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/validation.html#only_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.validation.only_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks for only text values (no spaces) in the given field.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grfcapp.validation.only_text_or_email">
+<code class="descclassname">grfcapp.validation.</code><code class="descname">only_text_or_email</code><span class="sig-paren">(</span><em>form</em>, <em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grfcapp/validation.html#only_text_or_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grfcapp.validation.only_text_or_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks for only text or email address values in the given field.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Mobile App</a><ul>
+<li><a class="reference internal" href="#module-grfcapp.app">grfcapp.app</a></li>
+<li><a class="reference internal" href="#module-grfcapp.validation">grfcapp.validation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="roster.html"
+                        title="previous chapter">Fruit + Lollies Roster</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="game.html"
+                        title="next chapter">Module grfc.game</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/grfcapp.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="game.html" title="Module grfc.game"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="roster.html" title="Fruit + Lollies Roster"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">GRFC 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Gus Garcia.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>
