@@ -1,0 +1,310 @@
+Résumé
+======
+
+**Gustavo Garcia**
+
+`guscastles@gmail.com <mailto:guscastles@gmail.com>`__ | 0410 074 154 | `au.linkedin.com/in/guscastles <http://au.linkedin.com/in/guscastles>`__ | `Portofolio on GitHub <http://github.com/pythongus>`__
+
+Career Profile
+^^^^^^^^^^^^^^
+
+ Agile Software Professional, with more than 9 years experience in Agile
+ environments and more than 20 years as a software engineer, Certified
+ ScrumMaster and Product Owner from Scrum Alliance and Certified SAFe
+ Agilist, focused on Agile/Lean principles and engineering practices,
+ such as CI/CD, pair programming, TDD, BDD and clean code. With a
+ PI-shaped career, experience in designing, implementing and maintaining
+ small and large scale and reliable systems for different industries, in
+ banking, logistics, telecommunications, and digital media. His current
+ focus is data science, web and desktop applications.
+
+~~~~~~~~~~~~~~~
+
+**Technical**
+
+-  Python
+
+-  TDD
+
+-  Pair Programming
+
+-  CI/CD
+
+-  Linux, Windows
+
+-  Flask, Django
+
+-  R
+
+**Data**
+
+-  Data Science
+
+-  Machine Learning
+
+-  Google Cloud Platform
+
+**Agile Delivery**
+
+-  Scrum
+
+-  Kanban
+
+-  Team collaboration (co-located and remote)
+
+-  Scaled Agile Framework (SAFe)
+
+-  Jira and Confluence
+
+**Facilitation**
+
+-  Dialogue Mapping
+
+-  Coding Dojo
+
+**Soft Skills**
+
+-  Principled negotiation
+
+-  Strong rapport building and interpersonal skills
+
+-  Excellent presentation and communication skills
+
+-  Work well under pressure and require very little management
+   supervision
+
+-  Self-starter, resilient and enthusiastic
+
+-  Customer journey
+
+
+
+Work Experience
+^^^^^^^^^^^^^^^
+
+ **General Assembly - Python Programming Instructor
+ | 05/2019-Current - Contractor**
+
+
+ Part-time instructor, for a 10-week course run in the evenings, every
+ Monday and Wednesday. The instructor profile at General Assembly is akin
+ to the activities performed by a ScrumMaster as well as a developer very
+ knowledgeable on Python basics, web applications with Flask, and data
+ analysis with Pandas.
+
+~~~~~~~~~~~~~~~
+
+ **ING Australia - Scrum Master / Pythonista
+ | 11/2016-05/2019 - Permanent**
+
+ Participated in the automation and data warehouse teams. Acted as a
+ facilitator and expert in the Python Coding Dojo, provided technical
+ expertise and performance tuning for different areas of the
+ organisation.
+
+ **Achievements**
+
+-  Developed **Python** scripts for data analysis on Agile metrics
+
+-  Created email pattern identification in **Python**, which saved up to
+   $100k/month on customers reimbursements
+
+-  Testing tool for data reconciliation in **Python**, reading from
+   Kafka and MSSQL database
+
+-  Web tool to perform data reconciliation on different datasets, using
+   Flask
+
+-  Created **Python** interface between physical and electronic Agile
+   boards, automating the update of electronic collaboration tools
+
+-  Tuned up the performance of a model calculation tool in **Python**
+   for Market Risk team, bringing down the runtime from 8 hours to 3
+   minutes
+
+-  Conversion tool for flat files to be loaded into data warehouse in
+   **Python**
+
+-  Developed and coached using the **Python** programming language, as
+   well as TDD and Clean Code
+
+-  Implemented the **Python** Coding Dojo, for data analysis and general
+   applications
+
+~~~~~~~~~~~~~~~
+
+ **Telstra - Senior Iteration Manager
+ | 1/2015-10/2016 - Contractor**
+
+ Iteration manager and RTE for several teams, including the NBN program
+ ($600M budget), with a 31-team Agile Release Train (ART).
+
+ **Achievements**
+
+-  Developed interfaces and CLIs for Jira using **Python**
+
+-  Automated updated of electronic tools (Jira) via **Python** scripts
+   and scheduler
+
+-  Trained and supported team members on using collaboration tools
+   (Jira)
+
+-  Improved communication amongst the teams, internal and external
+
+-  Facilitated objectives setting workshops, including risk management
+
+-  With Dialogue Mapping, facilitated shared understanding of complex
+   problems and requirements
+
+~~~~~~~~~~~~~~~
+
+ **NBN Co - Senior Java Front-end Developer
+ | 07/2014-12/2014 - Contractor**
+
+ Developed and maintained web apps, using Ruby on Rails and Javascript
+ frameworks.
+
+ **Achievements**
+
+-  Worked with TDD, BDD, Continuous Integration/Continuous Delivery and
+   Pair Programming
+
+-  Introduced Kanban for Just-In-Time tasks
+
+~~~~~~~~~~~~~~~
+
+ **Australian Broadcast Corporation - Senior Java Developer & DevOps, ScrumMaster
+ | 07/2012-06/2014 - Fixed-term Contractor**
+
+ Senior developer and SysAdmin for the educational portal team. Responsible for Agile
+ ceremonies and metrics. Developed using Liferay, with live streaming.
+
+ **Achievements**
+
+-  Applied coding and OOP best practices, including Java Design Patterns
+
+-  Managed Git repositories and continuous integration, coached team
+   members on its efficient operation
+
+-  Managed the continuous integration system, using Jenkins and native
+   Linux resources
+
+-  Coached the team on how to create better user stories and tasks
+
+-  Worked closely with the Product Owner to prepare the sprints,
+   grooming the Product Backlog
+
+-  Liaised with stakeholders and business analysts to help with the
+   requirements, managed expectations appropriately
+
+-  Acted as a mentor for junior developers on Java, design patterns, and
+   code quality
+
+-  Delivered the new educational portal
+   (`www.abc.net.au/splash <http://www.abc.net.au/splash>`__) in the
+   timeframe needed
+
+-  Contributed to create high quality software standards
+
+~~~~~~~~~~~~~~~
+
+ **St George Bank - Senior System Developer, Technical Consultant Applications
+ | 01/2010-06/2012 - Fixed-term Contractor**
+
+ Acted as senior developer in the remodelling of the company's main web
+ application, applying Object Oriented Programming best practices and
+ Java design patterns, working on multiple tiers of the application.
+ 
+ **Achievements**
+
+-  Refactored the core classes of the main web application, creating a
+   more maintainable codebase, with higher quality code
+
+-  Rebuilt the demonstration application applying Aspect Oriented
+   Programming (AOP),
+
+-  Developed a supporting tool, providing easy maintenance for the
+   production application
+
+-  Liaised with business analysts and testing team to help with the
+   systems specification and to solve defects
+
+-  Applied Test-Driven Development, assuring that quality standards were
+   achieved
+
+-  Used **Python** scripts to maintain applications configuration files
+
+-  Developed security features of the system, improving all aspects of
+   the main web application
+
+-  Provided expertise in technical areas to other members of the team
+
+-  Increased efficiency and functionality of build process
+
+~~~~~~~~~~~~~~~
+
+ **Universo Online Brazil - Senior Systems Analyst/Developer
+ | 07/2008-11/2009 - Permanent**
+
+ Agile Java developer in a company with 600+ developers, all working in
+ Scrum teams. Developed Java web application to monitor the data centre.
+
+ **Achievements**
+
+-  Helped improve the Scrum process by discussing modifications to
+   enhance the team's ability to deliver
+
+-  Helped the team with database implementation
+
+-  Contributed to the company’s system architecture council with Java
+   expertise
+
+-  Created standards for the team members to follow and enhance
+
+-  Demonstrated collaboration and multi-skills
+
+-  Helped the team with cross-functional knowledge (databases)
+
+-  Suggested to the Agile process, so we could deliver more efficiently
+   and timely
+
+
+Previous Experience
+^^^^^^^^^^^^^^^^^^^
+
+ **Convergys IMG do Brasil Ltda - Systems Analyst/ Java Developer
+ | 2006-2008 - Permanent**
+
+ **Uniconsult Sistemas Ltda - Oracle & Java Developer
+ | 2000-2006 - Permanent**
+
+Education
+^^^^^^^^^
+
+-  Bachelor of Computer Science - University of Sao Paulo (Brazil) -
+   recognised by ACS as equivalent to Australian Degree
+
+Professional Development
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+-  Data Engineering on Google Cloud Platform Specialization, Google, via
+   Coursera
+
+-  Machine Learning, Stanford, via Coursera
+
+-  Data Science Specialization, from Johns Hopkins, via Coursera (to be
+   completed)
+
+-  Certified SAFe Agilist, Leading SAFe 4.0
+
+-  CSM, Scrum Alliance
+
+-  CSPO, Scrum Alliance
+
+-  Oracle Certified Master, Java SE6 Developer Certification
+
+-  Sun Certified Web Component Developer for the Java Platform, EE5
+
+-  Sun Certified Programmer for the Java Platform 1.4
+
+-  Leadership – Effective Personal Productivity - LMI/Brazil
