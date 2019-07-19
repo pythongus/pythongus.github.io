@@ -1,1 +1,4 @@
 pythongus/
+build/
+Makefile
+source/
