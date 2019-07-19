@@ -5,3 +5,8 @@ Main Repo
 ^^^^^^^^^
 
 `Portfolio on GitHub <https://github.com/pythongus>`__
+
+YouTube Channel
+^^^^^^^^^^^^^^^
+
+`The Python Clean Coding Dojo <https://www.youtube.com/channel/UCiQCdLK4bXE6XACYLv8wXCw?view_as=subscriber>`__
