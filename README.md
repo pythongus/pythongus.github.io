@@ -2,14 +2,13 @@
 
 ## Profile
 
-Agile Software Professional, with more than 9 years experience in Agile
-environments and more than 20 years as a software engineer, Certified
-ScrumMaster and Product Owner from Scrum Alliance and Certified SAFe Agilist,
-focused on Agile/Lean principles and engineering practices, such as CI/CD,programming, TDD, BDD and clean code.
+Agile Software Professional, with 13+ years experience in Agile environments and software engineering,
+Kanban Management Professional, focused on Agile/Lean principles and engineering practices,
+such as CI/CD, pair programming, TDD, BDD and Clean Code.
 
-With a PI-shaped career, experiencedesigning, implementing and maintaining small and large scale and reliable
-systems for different industries, in banking, logistics, telecommunications,digital media. His current focus is data science, web and desktop applications.
-
+With a PI-shaped career in Agile roles (management and development), experienced in designing,
+implementing and maintaining small and large scale and reliable systems for different industries,
+in banking, fintech, logistics, telecommunications, and digital media.
 
 ## The Python Clean Coding Dojo
 
