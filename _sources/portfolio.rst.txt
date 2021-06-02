@@ -4,7 +4,7 @@ Portfolio on GitHub
 Main Repo
 ^^^^^^^^^
 
-`Portfolio on GitHub <https://github.com/pythongus>`__
+`Code Example in GitHub <https://github.com/pythongus/scrambleme>`__
 
 YouTube Channel
 ^^^^^^^^^^^^^^^
